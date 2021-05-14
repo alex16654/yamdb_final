@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 volumes:
   postgres_data:
@@ -33,6 +33,6 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       #- static_value:/var/html/static/
     ports:
-      - '80:80'
+      - "80:80"
     depends_on:
       - web
