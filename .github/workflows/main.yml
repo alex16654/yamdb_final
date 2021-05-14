@@ -1,5 +1,5 @@
 
-name: Yamdb_workflow
+name: yamdb_workflow
 
 on: [push]
 
