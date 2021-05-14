@@ -1,3 +1,5 @@
+![yamdb_workflow](https://github.com/alex16654/yamdb_final/workflows/yamdb_workflow/badge.svg)
+
 # REST API для сервиса **YaMDb** 
 версия c Docker
 
@@ -60,3 +62,28 @@ DB_PORT=5432 # порт для подключения к БД
 - Соберите статику командой `docker-compose exec web python manage.py collectstatic --no-input`
 - Создайте суперпользователя Django `docker-compose exec web python manage.py createsuperuser'`
 - Загрузите данные в базу данных  `docker-compose exec web python manage.py loaddata fixtures.json`
+Для запуска проекта на удаленном сервере необходимо:
+- скопировать на сервер файлы `docker-compose.yaml`, `.env` и папку `nginx` командами:
+```
+scp docker-compose.yaml  <user>@<server-ip>:
+scp .env <user>@<server-ip>:
+scp -r nginx/ <user>@<server-ip>:
+
+```
+- создать переменные окружения в разделе `secrets` настроек текущего репозитория:
+```
+DOCKER_PASSWORD # Пароль от Docker Hub
+DOCKER_USERNAME # Логин от Docker Hub
+HOST # Публичный ip адрес сервера
+USER # Пользователь зарегистрированный на сервере
+PASSPHRASE # Если ssh-ключ защищен фразой-паролем
+SSH_KEY # Приватный ssh-ключ
+TELEGRAM_TO # ID телеграм-аккаунта
+TELEGRAM_TOKEN # Токен бота
+```
+
+### После каждого обновления репозитория (`git push`) будет происходить:
+1. Проверка кода на соответствие стандарту PEP8 (с помощью пакета flake8) и запуск pytest из репозитория yamdb_final
+2. Сборка и доставка докер-образов на Docker Hub.
+3. Автоматический деплой.
+4. Отправка уведомления в Telegram.
