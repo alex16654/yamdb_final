@@ -1,14 +1,8 @@
-version: "3.7"
-
-volumes:
-  postgres_data:
-  static_value:
-  #static_volume:
+version: '3.7'
 
 services:
   db:
-    image: postgres:13.0
-    restart: always
+    image: postgres:12.4
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
@@ -19,7 +13,7 @@ services:
     image: alex16654/yamdb_final_web:latest
     restart: always
     volumes:
-      - ./static_value:/code/static/
+      - static_value:/code/static/
     depends_on:
       - db
     env_file:
@@ -27,13 +21,14 @@ services:
 
   nginx:
     image: nginx:1.19.3
-    restart: always
-
-    volumes:
-      #- ./static_volume:/code/static
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - static_value:/var/html/static/
     ports:
       - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - static_value:/var/html/static/
     depends_on:
       - web
+
+volumes:
+  postgres_data:
+  static_value:
