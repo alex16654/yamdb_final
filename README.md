@@ -1,4 +1,5 @@
 ![yamdb_workflow](https://github.com/alex16654/yamdb_final/workflows/yamdb_workflow/badge.svg)
+- #### Пример проекта API: **[LINK](http://84.252.142.152/api/v1/)**
 
 # REST API для сервиса **YaMDb** 
 версия c Docker
@@ -35,7 +36,7 @@
 * YaMDB отправляет письмо с кодом подтверждения (confirmation_code) на адрес email .
 * Пользователь отправляет запрос с параметрами email и confirmation_code на api/v1/auth/token/, в ответе на запрос ему приходит token (JWT-токен).
 * При желании пользователь отправляет PATCH-запрос на api/v1/users/me/ и заполняет поля в своём профайле (описание полей — в документации).
-[Полная документация API (redoc.yaml)](https://github.com/alex16654/infra_sp2/blob/master/static/redoc.yaml)
+[Полная документация API (redoc.yaml)](https://github.com/alex16654/yamdb_final/blob/master/static/redoc.yaml)
 
 ## Установка на локальном компьютере
 

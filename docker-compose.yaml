@@ -9,11 +9,11 @@ services:
       - ./.env
 
   web:
-    #build: .
     image: alex16654/yamdb_final_web:latest
     restart: always
     volumes:
       - static_value:/code/static/
+      - media_value:/code/media/
     depends_on:
       - db
     env_file:
@@ -26,9 +26,11 @@ services:
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - static_value:/var/html/static/
+      - media_value:/var/html/media/
     depends_on:
       - web
 
 volumes:
   postgres_data:
   static_value:
+  media_value:
